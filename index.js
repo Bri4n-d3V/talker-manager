@@ -18,6 +18,8 @@ const {
   handleTalk,
   createTalk,
 } = require('./middlewares/createTalker');
+const { editTalker } = require('./middlewares/editTalker');
+const { deleteTalker } = require('./middlewares/deleteTalker');
 
 const app = express();
 app.use(bodyParser.json());
@@ -38,6 +40,12 @@ app.post(
   handleToken, handleName, handleAge,
   handleTalk, handleWatchedAt, handleRate, createTalk,
 );
+app.put(
+  '/talker/:id',
+  handleToken, handleName, handleAge,
+  handleTalk, handleWatchedAt, handleRate, editTalker,
+);
+app.delete('/talker/:id', handleToken, deleteTalker);
 
 app.listen(PORT, () => {
   console.log('Online');
