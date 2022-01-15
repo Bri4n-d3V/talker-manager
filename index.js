@@ -20,6 +20,7 @@ const {
 } = require('./middlewares/createTalker');
 const { editTalker } = require('./middlewares/editTalker');
 const { deleteTalker } = require('./middlewares/deleteTalker');
+const searchTalker = require('./middlewares/searchTalker');
 
 const app = express();
 app.use(bodyParser.json());
@@ -32,6 +33,7 @@ app.get('/', (_request, response) => {
   response.status(HTTP_OK_STATUS).send();
 });
 
+app.get('/talker/search', handleToken, searchTalker);
 app.get('/talker', getAllTalkers);
 app.get('/talker/:id', getTalkerById);
 app.post('/login', handleEmail, handlePassword, handleLogin);
