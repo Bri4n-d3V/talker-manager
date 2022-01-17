@@ -1,10 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-/* const {
-  getAllTalkers,
-} = require('./middlewares/getAllTalkers'); */
-const getTalkerById = require('./middlewares/getTalkerById');
 
+// const getTalkerById = require('./middlewares/getTalkerById');
 const {
   handleToken,
   handleName,
@@ -32,12 +29,12 @@ app.get('/', (_request, response) => {
   response.status(HTTP_OK_STATUS).send();
 });
 
+app.get('/talker/search', handleToken, searchTalker);
+
 app.use('/talker', talkerRoute);
 app.use('/login', loginRoute);
 
-app.get('/talker/search', handleToken, searchTalker);
-// app.get('/talker', getAllTalkers);
-app.get('/talker/:id', getTalkerById);
+// app.get('/talker/:id', getTalkerById);
 app.post(
   '/talker',
   handleToken, handleName, handleAge,
