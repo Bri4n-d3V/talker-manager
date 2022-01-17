@@ -124,7 +124,6 @@ const createTalk = async (req, res) => {
   talker.id = talkers.length + 1;
   talkers.push(talker);
   writeTalker(talkers);
-  res.status(201).json(req.body);
 
   res.status(201).json(talker);
 };
